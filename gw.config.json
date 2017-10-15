@@ -1,0 +1,65 @@
+{
+  "loaders": [
+    {
+      "type": "node",
+      "name": "node"
+    },
+    {
+      "type": "native",
+      "name": "native"
+    }
+  ],
+  "modules": [{
+      "name": "localmqtt",
+      "loader": {
+        "name": "node",
+        "entrypoint": {
+          "main.path": "modules/localmqtt.js"
+        }
+      },
+      "args": null
+    },
+    {
+      "name": "node_printer",
+      "loader": {
+        "name": "node",
+        "entrypoint": {
+          "main.path": "modules/printer.js"
+        }
+      },
+      "args": null
+    },
+    {
+      "name": "IotHub",
+      "loader": {
+        "name": "native",
+        "entrypoint": {
+          "module.path": "/usr/lib/node_modules/azure-iot-gateway/node_modules/azure-iot-gateway-raspbian/bin/libiothub.so"
+        }
+      },
+      "args": {
+        "IoTHubName": "JamesBIoTHub6",
+        "IoTHubSuffix": "azure-devices.net",
+        "Transport": "AMQP",
+        "RetryPolicy": "EXPONENTIAL_BACKOFF_WITH_JITTER"
+      }
+    }
+  ],
+  "links": [{
+      "source": "localmqtt",
+      "sink": "node_printer"
+    },
+    {
+      "source":"localmqtt",
+      "sink":"IotHub"
+    },
+    {
+      "source":"IotHub",
+      "sink":"node_printer"
+    },
+    {
+      "source":"IotHub",
+      "sink":"localmqtt"
+    }
+  ]
+}
