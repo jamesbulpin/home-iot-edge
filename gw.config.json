@@ -20,16 +20,6 @@
       "args": null
     },
     {
-      "name": "node_printer",
-      "loader": {
-        "name": "node",
-        "entrypoint": {
-          "main.path": "modules/printer.js"
-        }
-      },
-      "args": null
-    },
-    {
       "name": "IotHub",
       "loader": {
         "name": "native",
@@ -45,17 +35,10 @@
       }
     }
   ],
-  "links": [{
-      "source": "localmqtt",
-      "sink": "node_printer"
-    },
+  "links": [
     {
       "source":"localmqtt",
       "sink":"IotHub"
-    },
-    {
-      "source":"IotHub",
-      "sink":"node_printer"
     },
     {
       "source":"IotHub",
