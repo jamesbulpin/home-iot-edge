@@ -38,7 +38,7 @@
         }
       },
       "args": {
-        "IoTHubName": "JamesBIoTHub6",
+        "IoTHubName": "JRBHomeHub",
         "IoTHubSuffix": "azure-devices.net",
         "Transport": "AMQP",
         "RetryPolicy": "EXPONENTIAL_BACKOFF_WITH_JITTER"
