@@ -52,7 +52,8 @@ module.exports = {
     this.client.on('error', this.home_mqtt_error.bind(this));
     this.client.on('close', this.home_mqtt_close.bind(this));
     this.client.on('reconnect', this.home_mqtt_reconnect.bind(this));
-    this.client.subscribe('Octoblu/#');
+    this.client.subscribe('Alert/#');
+    this.client.subscribe('Azure/#');
   },
   
   home_mqtt_offline: function() {
